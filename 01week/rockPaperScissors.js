@@ -9,10 +9,15 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
 function rockPaperScissors(hand1, hand2) {
 
   // Write code here
+
+  hand1 = hand1.trim();
+  hand1 = hand1.toLowerCase();
+  hand2 = hand2.trim();
+  hand2 = hand2.toLowerCase();
+  
   if (hand1 == hand2) {
     return("It's a tie!");
   } else if (hand1 == 'rock' && hand2 == 'scissors') {
@@ -51,9 +56,9 @@ if (typeof describe === 'function') {
       assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
     });
     it('should scrub input to ensure lowercase with "trim"ed whitepace', () => {
-      assert.equal(rockPaperScissors('rock', 'paper'), "Hand two wins!");
-      assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
-      assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
+      assert.equal(rockPaperScissors('rOcK', ' paper '), "Hand two wins!");
+      assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
+      assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
     });
   });
 } else {
