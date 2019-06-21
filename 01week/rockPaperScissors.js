@@ -61,31 +61,3 @@ if (typeof describe === 'function') {
   getPrompt();
 
 }
-
-
-
-// establish players
-
-// input options are rock, paper, scissors
-
-// if statements - if same, then tie... if not, declare who wins in each scenario
-// 1. tie scenarios
-// 2. R - S (R wins)
-// 3. R - P (P wins)
-// 4. S - R (R wins)
-// 5. S - P (S wins)
-// 6. P - R (P wins)
-// 7. P - S (S wins)
-
-  // if (hand1 == hand2) {
-  //   console.log("It's a tie!")
-  // } else if (hand1 == "rock" && hand2 == "scissors") {
-  //   console.log("hand1 wins!")
-  // } else if (hand1 == "paper" && hand2 == "rock") {
-  //   console.log("hand1 wins!")
-  // } else if (hand1 == "scissors" && hand2 == "paper") {
-  //   console.log("hand1 wins!")
-  // } else {
-  //   console.log("hand2 wins!")
-  // }
-
