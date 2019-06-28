@@ -25,22 +25,51 @@ function printBoard() {
 
 function horizontalWin() {
   // Your code here
+  if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'X') {
+    return 'X wins';
+  } else if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'O') {
+    return 'O wins';
+  }
 }
 
 function verticalWin() {
   // Your code here
+
 }
 
 function diagonalWin() {
   // Your code here
+
 }
 
 function checkForWin() {
   // Your code here
+  // if horizontal win is met or others are met, then it's a win
 }
 
 function ticTacToe(row, column) {
   // Your code here
+  if (playerTurn = 'X') {
+
+  }
+
+  // what we need in here:
+  // isvalid (pick something else..?) if valid... then...
+  // place on board... then...
+  // check for wins... then...
+  // switchplayer
+  // 
+
+
+  // if not valid move:
+  // if (!board[1][1])
+  // [board[1][1]=player1]
+
+  // flipping between X and O
+  // playerX = 'X'
+  // playerO = 'O'
+  // how do we keep track of switching players?
+  // if current == playerX) {set current = playerO} else {current == playerX}
 }
 
 function getPrompt() {
@@ -54,6 +83,9 @@ function getPrompt() {
   });
 
 }
+
+
+
 
 
 
