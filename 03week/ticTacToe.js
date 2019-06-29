@@ -30,6 +30,7 @@ function horizontalWin() {
   } else if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'O') {
     return 'O wins';
   }
+  // ! need to put all other options in here too! !
 }
 
 function verticalWin() {
@@ -39,25 +40,56 @@ function verticalWin() {
   } else if (board[[0][0]] && board[[1][0]] && board[[2][0]] == 'O') {
     return 'O wins';
   }
+  // ! need to put all other options in here too! !
 }
 
 function diagonalWin() {
   // Your code here
-  if (board[[0][0]] && board[[1][1]] && board[[2][2]] == 'X') {
+  if (board[[0][0]] && board[[1][1]] && board[[2][2]] === 'X') {
     return 'X wins';
-  } else if (board[[0][0]] && board[[1][1]] && board[[2][2]] == 'O') {
+  } else if (board[[0][0]] && board[[1][1]] && board[[2][2]] === 'O') {
     return 'O wins';
   }
+  // ! need to put all other options in here too! !
 }
 
 function checkForWin() {
   // Your code here
   // if horizontal win is met or others are met, then it's a win
+  if (horizontalWin == 'X wins' || horizontalWin == 'O wins') {
+    window.alert('Game over!')
+  } else if (verticalWin == 'X wins' || verticalWin == 'O wins') {
+    window.alert('Game over!')
+  } else if (diagonalWin == 'X wins' || diagonalWin == 'O wins') {
+    window.alert('Game over!')
+  } else {
+
+  }
+  // ! is that how to reference the various wins? !
+  // ! do i need empty else function so that it will move on? !
+}
+
+// define validMove
+// define is it empty?
+// TODO: define is it a winner?
+// TODO: define how to switch players
+
+const validMove = (row, column) => {
+  if ((row >=0 && row <= 2) || (column >=0 && column <=2)) {
+    return true;
+  }
+}
+
+const emptySpace = (row, column) => {
+  // ! what needs to go inside brackets below..? !
+  if (board[][] === ' ') {
+    return true;
+  }
 }
 
 function ticTacToe(row, column) {
   // Your code here
-  if (playerTurn = 'X') {
+  if (validMove ) {
     
   }
 
