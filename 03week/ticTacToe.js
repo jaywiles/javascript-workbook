@@ -23,22 +23,41 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
+// function horizontalWin() {
+//   // Your code here
+//   if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'X') {
+//     return true;
+//   } else if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'O') {
+//     return true;
+//   }
+
+//   // ! need to put all other options in here too! !
+// }
+
 function horizontalWin() {
-  // Your code here
-  if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'X') {
-    return 'X wins';
-  } else if (board[[0][0]] && board[[0][1]] && board[[0][2]] == 'O') {
-    return 'O wins';
+  if ((board[0][0] == 'X') && (board[0][1] == 'X') && (board[0][2] == 'X')){
+    return true
+  } else if ((board[1][0] =='X') && (board[1][1] == 'X') && (board[1][2] == 'X')){
+    return true
+  } else if ((board[2][0] == 'X') && (board[2][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[0][1] == 'O') && (board[0][2] == 'O')){
+    return true
+  } else if ((board[1][0] =='O') && (board[1][1] == 'O') && (board[1][2] == 'O')){
+    return true
+  } else if ((board[2][0] == 'O') && (board[2][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
   }
-  // ! need to put all other options in here too! !
 }
 
 function verticalWin() {
   // Your code here
   if (board[[0][0]] && board[[1][0]] && board[[2][0]] == 'X') {
-    return 'X wins';
+    return true;
   } else if (board[[0][0]] && board[[1][0]] && board[[2][0]] == 'O') {
-    return 'O wins';
+    return true;
   }
   // ! need to put all other options in here too! !
 }
@@ -46,9 +65,9 @@ function verticalWin() {
 function diagonalWin() {
   // Your code here
   if (board[[0][0]] && board[[1][1]] && board[[2][2]] === 'X') {
-    return 'X wins';
+    return true;
   } else if (board[[0][0]] && board[[1][1]] && board[[2][2]] === 'O') {
-    return 'O wins';
+    return true;
   }
   // ! need to put all other options in here too! !
 }
@@ -56,12 +75,27 @@ function diagonalWin() {
 function checkForWin() {
   // Your code here
   // if horizontal win is met or others are met, then it's a win
-  if (horizontalWin == 'X wins' || horizontalWin == 'O wins') {
-    window.alert('Game over!')
-  } else if (verticalWin == 'X wins' || verticalWin == 'O wins') {
-    window.alert('Game over!')
-  } else if (diagonalWin == 'X wins' || diagonalWin == 'O wins') {
-    window.alert('Game over!')
+  if (horizontalWin()) {
+    console.log('Game over! ' + playerTurn + ' wins!')
+    board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+  } else if (verticalWin()) {
+    console.log('Game over! ' + playerTurn + ' wins!')
+    board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+  } else if (diagonalWin()) {
+    console.log('Game over! ' + playerTurn + ' wins!')
+    board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
   }
   // ! is that how to reference the various wins? !
 }
@@ -71,36 +105,39 @@ function checkForWin() {
 // TODO: define is it a winner?
 // TODO: define how to switch players
 
+const validInput = (row, column) => {
+  if ((row >=0 && row <= 2) && (column >=0 && column <=2)) {
+    return true;
+  }
+}
+
 const validMove = (row, column) => {
-  if ((row >=0 && row <= 2) || (column >=0 && column <=2)) {
+  if (board[row][column] === ' ') {
     return true;
   }
 }
 
-const emptySpace = (row, column) => {
-  // ! what needs to go inside brackets below..? !
-  if (board[][] === ' ') {
-    return true;
+const switchPlayer = () => {
+  if (playerTurn == 'X') {
+    playerTurn = 'O'
+  } else {
+    playerTurn = 'X'
   }
-}
-
-const checkWin = (row, column) => {
-
-}
-
-const switchPlayer = (playerTurn) => {
-
 }
 
 function ticTacToe(row, column) {
   // Your code here
-  if (validMove = true) {
-    if (emptySpace = true) {
-      if (checkWin) {
-        
-      }
+  if (validInput(row, column)) {
+    if (validMove(row, column)) {
+      board[row][column] = playerTurn;
+      // switchPlayer();
+      checkForWin();
+      switchPlayer();
+    } else {
+      console.log('Please choose an open space.')
     }
   }
+}
 
   // what we need in here:
   // isvalid (pick something else..?) if valid... then...
@@ -119,7 +156,7 @@ function ticTacToe(row, column) {
   // playerO = 'O'
   // how do we keep track of switching players?
   // if current == playerX) {set current = playerO} else {current == playerX}
-}
+
 
 function getPrompt() {
   printBoard();
