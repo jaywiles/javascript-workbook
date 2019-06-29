@@ -62,15 +62,12 @@ function checkForWin() {
     window.alert('Game over!')
   } else if (diagonalWin == 'X wins' || diagonalWin == 'O wins') {
     window.alert('Game over!')
-  } else {
-
   }
   // ! is that how to reference the various wins? !
-  // ! do i need empty else function so that it will move on? !
 }
 
-// define validMove
-// define is it empty?
+// TODO: define validMove
+// TODO: define is it empty?
 // TODO: define is it a winner?
 // TODO: define how to switch players
 
@@ -87,10 +84,22 @@ const emptySpace = (row, column) => {
   }
 }
 
+const checkWin = (row, column) => {
+
+}
+
+const switchPlayer = (playerTurn) => {
+
+}
+
 function ticTacToe(row, column) {
   // Your code here
-  if (validMove ) {
-    
+  if (validMove = true) {
+    if (emptySpace = true) {
+      if (checkWin) {
+        
+      }
+    }
   }
 
   // what we need in here:
