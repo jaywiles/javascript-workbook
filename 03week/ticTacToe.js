@@ -104,15 +104,8 @@ function checkForWin() {
       [' ', ' ', ' '],
       [' ', ' ', ' ']
     ];
-  // } else {
-  //   switchPlayer();
   }
 }
-
-// TODO: define validMove
-// TODO: define is it empty?
-// TODO: define is it a winner?
-// TODO: define how to switch players
 
 const validInput = (row, column) => {
   if ((row >=0 && row <= 2) && (column >=0 && column <=2)) {
@@ -138,25 +131,6 @@ function ticTacToe(row, column) {
   }
 }
 
-  // what we need in here:
-  // isvalid (pick something else..?) if valid... then...
-  // place on board... then...
-  // check for wins... then...
-  // switchplayer
-  // 
-
-
-  // if not valid move:
-  // if (!board[1][1])
-  // [board[1][1]=player1]
-
-  // flipping between X and O
-  // playerX = 'X'
-  // playerO = 'O'
-  // how do we keep track of switching players?
-  // if current == playerX) {set current = playerO} else {current == playerX}
-
-
 function getPrompt() {
   printBoard();
   console.log("It's Player " + playerTurn + "'s turn.");
@@ -168,11 +142,6 @@ function getPrompt() {
   });
 
 }
-
-
-
-
-
 
 // Tests
 
