@@ -24,23 +24,111 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  if ((board[0][0] == 'X') && (board[0][1] == 'X') && (board[0][2] == 'X')){
+    return true
+  } else if ((board[1][0] =='X') && (board[1][1] == 'X') && (board[1][2] == 'X')){
+    return true
+  } else if ((board[2][0] == 'X') && (board[2][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[0][1] == 'O') && (board[0][2] == 'O')){
+    return true
+  } else if ((board[1][0] =='O') && (board[1][1] == 'O') && (board[1][2] == 'O')){
+    return true
+  } else if ((board[2][0] == 'O') && (board[2][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
 }
 
 function verticalWin() {
-  // Your code here
+  if ((board[0][0] == 'X') && (board[1][0] == 'X') && (board[2][0] == 'X')){
+    return true
+  } else if ((board[0][1] =='X') && (board[1][1] == 'X') && (board[2][1] == 'X')){
+    return true
+  } else if ((board[0][2] == 'X') && (board[1][2] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[1][0] == 'O') && (board[2][0] == 'O')){
+    return true
+  } else if ((board[0][1] =='O') && (board[1][1] == 'O') && (board[2][1] == 'O')){
+    return true
+  } else if ((board[0][2] == 'O') && (board[1][2] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else {
+    return false
+  }
 }
 
 function diagonalWin() {
-  // Your code here
+  if ((board[0][0] == 'X') && (board[1][1] == 'X') && (board[2][2] == 'X')){
+    return true
+  } else if ((board[0][2] =='X') && (board[1][1] == 'X') && (board[2][0] == 'X')){
+    return true
+  } else if ((board[0][0] == 'O') && (board[1][1] == 'O') && (board[2][2] == 'O')){
+    return true
+  } else if ((board[0][2] =='O') && (board[1][1] == 'O') && (board[2][0] == 'O')){
+    return true
+  } else {
+    return false
+  }
+}
+
+const switchPlayer = () => {
+  if (playerTurn == 'X') {
+    playerTurn = 'O'
+  } else {
+    playerTurn = 'X'
+  }
 }
 
 function checkForWin() {
-  // Your code here
+  // if horizontal win is met or others are met, then it's a win
+  if (horizontalWin()) {
+    console.log('Game over! ' + playerTurn + ' wins!');
+    board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+  } else if (verticalWin()) {
+    console.log('Game over! ' + playerTurn + ' wins!');
+    board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+  } else if (diagonalWin()) {
+    console.log('Game over! ' + playerTurn + ' wins!')
+    board = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+  }
+}
+
+const validInput = (row, column) => {
+  if ((row >=0 && row <= 2) && (column >=0 && column <=2)) {
+    return true;
+  }
+}
+
+const validMove = (row, column) => {
+  if (board[row][column] === ' ') {
+    return true;
+  }
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+  if (validInput(row, column)) {
+    if (validMove(row, column)) {
+      board[row][column] = playerTurn;
+      checkForWin();
+      switchPlayer();
+    } else {
+      console.log('Please choose an open space.')
+    }
+  }
 }
 
 function getPrompt() {
@@ -54,8 +142,6 @@ function getPrompt() {
   });
 
 }
-
-
 
 // Tests
 
