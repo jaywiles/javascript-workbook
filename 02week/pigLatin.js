@@ -7,27 +7,6 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// function pigLatin(word) {
-//   // defines vowels, trims string, makes all characters lowercase
-//   const vowels = ['a','e','i','o','u'];
-//   word = word.trim();
-//   word = word.toLowerCase();
-//   // search for position of first vowel in string
-//   const findVowel = () => word.indexOf(vowels, 0)
-//   // console.log(word);
-
-//   const wordLoop = () => {
-//     for (i = 0; i <= wordLoop.length; i++) {
-//       let movedLetter = word.slice(0, findVowel.length);
-//       if ()
-      
-//     }
-//   }
-// }
-
-
-
-
 
 function pigLatin(word) {
 
@@ -99,9 +78,9 @@ function displayPigLatin() {
   // this performs pigLatin function on word put into translator
   pigLatin(formInput);
   // this displays result
-  // document.write(pigLatin(formInput));
-  // (testing more functionality below)
-  document.getElementById('listOfItemsID').innerHTML = pigLatin(formInput);
+  document.write(pigLatin(formInput));
+  // displays result on same page - but issue showing up
+  // document.getElementById('listOfItemsID').innerHTML = pigLatin(formInput);
 }
 
 // getElementById('listOfItemsID')
@@ -135,38 +114,3 @@ if (typeof describe === 'function') {
   pigLatin();
 
 }
-
-
-
-
-
-
-// $(function() {
-//   let $submitButton = $('#submitButton');
-//   let $listOfItemsID = $('#listOfItemsID');
-  
-//   $submitButton.on('click',function(e) {
-//       e.preventDefault();
-//       // above might be more specific to jQuery -- this particular function keeps the item from instantly going away after click
-//       let $userInput = $('#userInput').val();
-//       // console.log($userInput);
-//       // line above tests for Chrome inspect tool
-//       // $listOfItemsID.html($userInput);
-//       // line above makes input show up on page after we type it in and hit enter
-//       $(`<li>${$userInput}</li>`).appendTo($listOfItemsID);
-//       // below clears submission so it's ready for the next one
-//       // console.log(#userInput);
-//       $('#userInput').val('');
-//       // adding a space between '' in val() will clear the field above - not having the space will return it to the original text
-
-//   });
-
-//   // "this" is a JS keyword - dark blue means it's a reserved word in JS
-//   $listOfItemsID.on('click', 'li', function() {
-//       let $this = $(this);
-//       // console.log($this);
-//       $this.remove();
-//   });
-
-
-// });
