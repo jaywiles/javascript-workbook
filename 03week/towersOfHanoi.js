@@ -1,3 +1,10 @@
+// player clicks block to place on peg
+// if peg is empty, block will be placed
+// if peg already has block(s):
+// if block on peg is smaller than block in hand, return 'invalid move'
+// if block on peg is larger than block in hand, block will be placed
+// once all blocks are moved to last peg, return 'winner'
+
 'use strict';
 
 const assert = require('assert');
@@ -20,12 +27,18 @@ function printStacks() {
 }
 
 function movePiece() {
-  // if ()
+  
 
 }
 
 function isLegal() {
   // Your code here
+  // if (stacks[] > stacks[]) {
+  //   movePiece();
+  // } else {
+  //   console.log('That move is not allowed.')
+  // }
+
 
 }
 
