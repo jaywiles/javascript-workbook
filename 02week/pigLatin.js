@@ -72,7 +72,7 @@ function getPrompt() {
 }
 
 
-function displayPigLatin() {
+function displayPigLatin(event) {
   // this pulls data from form
   let formInput = document.getElementById('userInput').value;
   // this performs pigLatin function on word put into translator
@@ -81,6 +81,7 @@ function displayPigLatin() {
   // document.write(pigLatin(formInput));
   // displays result on same page - but issue showing up
   document.getElementById('listOfItemsID').innerHTML = pigLatin(formInput);
+  event.preventDefault();
 }
 
 // getElementById('listOfItemsID')
