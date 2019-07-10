@@ -78,9 +78,9 @@ function displayPigLatin() {
   // this performs pigLatin function on word put into translator
   pigLatin(formInput);
   // this displays result
-  document.write(pigLatin(formInput));
+  // document.write(pigLatin(formInput));
   // displays result on same page - but issue showing up
-  // document.getElementById('listOfItemsID').innerHTML = pigLatin(formInput);
+  document.getElementById('listOfItemsID').innerHTML = pigLatin(formInput);
 }
 
 // getElementById('listOfItemsID')
