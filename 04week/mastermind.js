@@ -30,13 +30,31 @@ function getRandomInt(min, max) {
 
 function generateHint() {
   // your code here
+  // console.log('You have _ correct characters, but only _ are in the right spot.')
 }
+
+// compare each letter
+// if right character and right spot, red peg || if not, white peg
 
 function mastermind(guess) {
-  solution = 'abcd'; // Comment this out to generate a random solution
+  // solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
+  // solution = 
+  // for (i = 0; i <= 4; i++) {
+  // }
+  let guessArray = guess.split('');
+  let solutionArray = ;
+
+
 }
 
+// take guess, which is a string, and parse it into an array
+// function validInput(guessArray) {
+//   let isValid = true; // usually set to true at first and then false when checking - easier to check when false
+//   if (!guessArray.includes(letters)) {
+//   isValid = false
+//   }
+// }
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
