@@ -56,6 +56,11 @@ function mastermind(guess) {
 //   }
 // }
 
+// validInput() - new function
+// comparing guessArray to solution
+// if we have for loop of i.. if guessArray.charAt[i] is equal to solution.charAt[i]
+// will also need .indexAr
+
 function getPrompt() {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
