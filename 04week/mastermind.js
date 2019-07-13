@@ -28,38 +28,44 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
-  // your code here
-  // console.log('You have _ correct characters, but only _ are in the right spot.')
+function validInput(guess) {
+	let isValid = true;
+	if (!guess.includes(letters)) {
+		isValid = false;
+	}
 }
 
-// compare each letter
-// if right character and right spot, red peg || if not, white peg
+function generateHint(guessArray, solutionArray) {
+	let redPeg = 0;
+	let whitePeg = 0;
+	for (let i = 0; i < guessArray.length; i++) {
+		if (guessArray[i] === solutionArray[i]) {
+			redPeg++;
+		} else if (guessArray[i].includes(solutionArray)) {
+			whitePeg++;
+		}
+	}
+	console.log(redPeg + "-" + whitePeg);
+	return redPeg + "-" + whitePeg;
+}
 
 function mastermind(guess) {
-  // solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
-  // solution = 
-  // for (i = 0; i <= 4; i++) {
-  // }
-  let guessArray = guess.split('');
-  let solutionArray = ;
-
-
+  // solution = generateSolution();
+  solution = 'abcd';
+  // splits each character in guess so each can be checked
+  const guessArray = guess.split('');
+  // splits each character in solution so each can be checked
+  const solutionArray = solution.split('');
+  
+  if (guess === solution) {
+    console.log('You guessed it!');
+    return 'You guessed it!';
+  } else if (validInput(guessArray)) {
+		generateHint(guessArray, solutionArray);
+	} else {
+    console.log('You must enter a letter between "a" and "h".');
+  }
 }
-
-// take guess, which is a string, and parse it into an array
-// function validInput(guessArray) {
-//   let isValid = true; // usually set to true at first and then false when checking - easier to check when false
-//   if (!guessArray.includes(letters)) {
-//   isValid = false
-//   }
-// }
-
-// validInput() - new function
-// comparing guessArray to solution
-// if we have for loop of i.. if guessArray.charAt[i] is equal to solution.charAt[i]
-// will also need .indexAr
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
@@ -98,3 +104,56 @@ if (typeof describe === 'function') {
   generateSolution();
   getPrompt();
 }
+
+
+
+
+
+// function generateHint(guess) {
+//   // starting the count for each of these so they can be logged below
+//   let correctLetterLocations = 0;
+//   let correctLetters = 0;
+//   // this function counts the number of characters that are also in the solution, and counts the number that are in the right place
+//   guessArray.forEach((letter, index) => {
+//     const correspondingLetter = solutionArray[index];
+//     if (letter == correspondingLetter) {
+//       correctLetterLocations++;
+//     } else if (solutionArray.includes(letter)) {
+//       correctLetters++;
+//     }
+//   });
+//   console.log(`You have ${correctLetters} correct characters, but only ${correctLetterLocations} are in the right spot.`);
+//   return correctLetterLocations + ' ' + correctLetters;
+// }
+
+// compare each letter
+// if right character and right spot, red peg || if not, white peg
+
+
+
+
+
+// take guess, which is a string, and parse it into an array
+// function validInput(guessArray) {
+//   let isValid = true; // usually set to true at first and then false when checking - easier to check when false
+//   if (!guessArray.includes(letters)) {
+//   isValid = false
+//   }
+// }
+
+// validInput() - new function
+// comparing guessArray to solution
+// if we have for loop of i.. if guessArray.charAt[i] is equal to solution.charAt[i]
+// will also need .indexAr
+
+
+
+
+
+// const isValidInput = () => {
+//   if (guess.includes(letters)) {
+//     mastermind();
+//   } else {
+//     console.log('Please input a letter from "a" to "h".')
+//   }
+// }
