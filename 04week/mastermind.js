@@ -28,11 +28,21 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function validInput(guess) {
-	let isValid = true;
-	if (!guess.includes(letters)) {
-		isValid = false;
-	}
+// function validInput(guess) {
+//   for (i = 0; i <= guessArray.length; i++) {
+//     if 
+//     letters.includes(guess[i])
+//   }
+//   return false;
+// }
+
+function validInput(guessArray) {
+  for (let i = 0; i < guessArray.length; i++) {
+    if (!letters.includes(guessArray[i])) {
+      return false;
+    }
+  }
+  return true;
 }
 
 function generateHint(guessArray, solutionArray) {
@@ -45,11 +55,12 @@ function generateHint(guessArray, solutionArray) {
 			whitePeg++;
 		}
 	}
-	console.log(redPeg + "-" + whitePeg);
-	return redPeg + "-" + whitePeg;
+	console.log(redPeg + '-' + whitePeg);
+	return redPeg + '-' + whitePeg;
 }
 
 function mastermind(guess) {
+  // console.log( "Solution: " + solution + "\n" + "Guess: " + guess )
   // solution = generateSolution();
   solution = 'abcd';
   // splits each character in guess so each can be checked
@@ -57,14 +68,18 @@ function mastermind(guess) {
   // splits each character in solution so each can be checked
   const solutionArray = solution.split('');
   
-  if (guess === solution) {
-    console.log('You guessed it!');
-    return 'You guessed it!';
-  } else if (validInput(guessArray)) {
-		generateHint(guessArray, solutionArray);
+  if (guessArray.length <= 4) {
+		if (guess === solution) {
+			console.log('You guessed it!');
+			return 'You guessed it!'; 
+		} else if (validInput(guessArray)) {
+			board.unshift(guess + " " + generateHint(guessArray, solutionArray))
+		} else {
+			console.log('You must enter a letter between "a" and "h".');
+		}
 	} else {
-    console.log('You must enter a letter between "a" and "h".');
-  }
+		console.log('Too many letters');
+	}
 }
 
 function getPrompt() {
@@ -157,3 +172,11 @@ if (typeof describe === 'function') {
 //     console.log('Please input a letter from "a" to "h".')
 //   }
 // }
+
+
+
+  // if (letters.join().includes(guess.join())) {
+  //   return false;
+  // }
+  // console.log('Is this working?')
+  // return true
