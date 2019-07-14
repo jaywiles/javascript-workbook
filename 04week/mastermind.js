@@ -11,6 +11,9 @@ let board = [];
 let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+// this is to get colors for red peg answers
+var colors = require('colors');
+
 function printBoard() {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
@@ -55,7 +58,7 @@ function generateHint(guessArray, solutionArray) {
 			whitePeg++;
 		}
 	}
-	console.log(redPeg + '-' + whitePeg);
+	console.log(colors.red(redPeg) + '-' + whitePeg);
 	return redPeg + '-' + whitePeg;
 }
 
