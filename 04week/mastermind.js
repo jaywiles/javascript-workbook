@@ -50,8 +50,8 @@ const guessesRemaining = () => {
 function generateHint(guessArray, solutionArray) {
 	let redPeg = 0;
 	let whitePeg = 0;
-	for ( let i = 0; i < solutionArray.length; i++ ) {
-		if ( guessArray[i] === solutionArray[i] ) {
+	for (let i = 0; i < solutionArray.length; i++) {
+		if (guessArray[i] === solutionArray[i]) {
 			redPeg++;
 			// remove the guess that has already been tested
 			solutionArray[i] = null;
@@ -81,7 +81,7 @@ function mastermind(guess) {
   // splits each character in solution so each can be checked
   const solutionArray = solution.split('');
   
-  if (guessArray.length <= 4) {
+  if (guessArray.length === 4) {
 		if (guess === solution) {
 			console.log('You guessed it!');
 			return 'You guessed it!'; 
@@ -91,7 +91,7 @@ function mastermind(guess) {
 			console.log('You must enter a letter between "a" and "h".');
 		}
 	} else {
-		console.log('Too many letters');
+		console.log('Please input four letters.');
 	}
 }
 
