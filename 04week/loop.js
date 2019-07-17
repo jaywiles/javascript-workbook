@@ -104,14 +104,14 @@ const dateFilter =
 
 
 
-for (person.birthDate in person) {
-    for (let i = 0; i < person.length; i++) {
-        let birthSplit = person[i].birthDate.split(' ');
-        if (birthSplit[2] % 2 !== 0) {
-            let birthReturn = birthSplit.join(' ');
-            console.log("3. ", birthReturn);
-        } else {
-            console.log('false');
-        }
-    }
-}
+// for (person.birthDate in person) {
+//     for (let i = 0; i < person.length; i++) {
+//         let birthSplit = person[i].birthDate.split(' ');
+//         if (birthSplit[2] % 2 !== 0) {
+//             let birthReturn = birthSplit.join(' ');
+//             console.log("3. ", birthReturn);
+//         } else {
+//             console.log('false');
+//         }
+//     }
+// }
