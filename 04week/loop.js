@@ -9,6 +9,7 @@ do {
     i++
 } while (i <= 1000);
 
+// Used to create a space between different answers
 console.log('')
 
 // 2. Create an object (an array with keys and values) called person with the following data:
@@ -31,14 +32,17 @@ for (person.birthDate in person) {
         let birthSplit = person[i].birthDate.split(' ');
         if (birthSplit[2] % 2 !== 0) {
             let birthReturn = birthSplit.join(' ');
-            console.log("3 " + birthReturn);
+            console.log("3. ", birthReturn);
         } else {
             console.log('false');
         }
     }
 }
 
-// 4. Create an arrayOfPersons that contains mulitiple objects. You can simply copy/paste the person object you made above multiple times. Feel free to change the values to reflect multiple people you might have in your database.
+// Used to create a space between different answers
+console.log('')
+
+// 4. Create an arrayOfPersons that contains multiple objects. You can simply copy/paste the person object you made above multiple times. Feel free to change the values to reflect multiple people you might have in your database.
 
 const personArray = [{
     firstName: "Jane",
@@ -64,14 +68,50 @@ const personArray = [{
 
 // 5. Use .map() to map over the arrayOfPersons and console.log() their information.
 
-personArray.map(element => {
-    console.log("5 " + element);
+let arrayOfPersons = personArray.map(element => {
+    console.log("5. ", element);
 })
+
+// Used to create a space between different answers
+console.log('')
 
 // 6. Use .filter() to filter the persons array and console.log only males in the array.
 
-// personArray.filter(gender => {
-//     if (gender === "male") {
-//         console.log("6 " + gender)
-//     }
-// })
+const personsFilter = personArray.filter(persons => (persons.gender == "male")); 
+
+console.log("6. ", personsFilter);
+
+// Used to create a space between different answers
+console.log('')
+
+// 7. Use .filter() to filter the persons array and console.log only people that were born before Jan 1, 1990.
+
+// const dateFilter = personArray.filter(persons => (persons.birthDate.length[-4] < 1990))
+
+// function dateFilter(personArray) {
+//     if (birthDate.length)
+// }
+
+// const dateFilter = personArray.substring(personArray["birthDate"].length - 4);
+
+// console.log("7. ", personArray.filter(dateFilter))
+
+let yearFilter = 0
+const dateFilter = 
+
+
+
+
+
+
+for (person.birthDate in person) {
+    for (let i = 0; i < person.length; i++) {
+        let birthSplit = person[i].birthDate.split(' ');
+        if (birthSplit[2] % 2 !== 0) {
+            let birthReturn = birthSplit.join(' ');
+            console.log("3. ", birthReturn);
+        } else {
+            console.log('false');
+        }
+    }
+}
