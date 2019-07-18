@@ -7,6 +7,10 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// const wordVowel = (aword) => {
+//   return aword + 'yay'
+// }
+
 
 function pigLatin(word) {
 
@@ -46,10 +50,6 @@ function pigLatin(word) {
     } //else if ()
   }
 }
-
-
-
-
 
 function getPrompt() {
   rl.question('word ', (answer) => {
