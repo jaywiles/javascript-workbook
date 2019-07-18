@@ -51,8 +51,6 @@ function pigLatin(word) {
   }
 }
 
-
-
 function getPrompt() {
   rl.question('word ', (answer) => {
     if (answer.includes(' ')) {
@@ -61,16 +59,32 @@ function getPrompt() {
         console.log(pigLatin(separatedWords.toString()))
       } else console.log((pigLatin(separatedWords[0])) + ' ' + (pigLatin(separatedWords[1])))
       getPrompt();
+      displayPigLatin();
       
     } else { 
       let newWord = answer.trim().toLowerCase();
       console.log(newWord)
       console.log( pigLatin(newWord) );
     getPrompt();
+    displayPigLatin();
   }
   });
 }
 
+
+function displayPigLatin(event) {
+  // this pulls data from form
+  let formInput = document.getElementById('userInput').value;
+  // this performs pigLatin function on word put into translator
+  pigLatin(formInput);
+  // this displays result
+  // document.write(pigLatin(formInput));
+  // displays result on same page - but issue showing up
+  document.getElementById('listOfItemsID').innerHTML = pigLatin(formInput);
+  event.preventDefault();
+}
+
+// getElementById('listOfItemsID')
 // Tests
 
 if (typeof describe === 'function') {
