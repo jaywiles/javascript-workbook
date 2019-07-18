@@ -96,8 +96,18 @@ console.log('')
 
 // console.log("7. ", personArray.filter(dateFilter))
 
-let yearFilter = 0
-const dateFilter = 
+let oldies = personArray.filter(function birthday(birthYear){
+//using regex to search each element for a space followed by four numbers/digits
+let r = /[' ']\d{4}/
+  
+//but .match() was giving me issues because I wasn't targeting a string with my parameter birthYear, so I made a variable to get the string
+let stringElements = birthYear.birthDate;
+  
+//now that stringElements is a string, I can use match() to compare the value to my regex criteria.
+if (stringElements.match(r) <= 1990) {
+    console.log("7. ", birthYear.firstName + ' ' + birthYear.lastName)
+    }
+})
 
 
 
