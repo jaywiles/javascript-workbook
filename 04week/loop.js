@@ -86,42 +86,13 @@ console.log('')
 
 // 7. Use .filter() to filter the persons array and console.log only people that were born before Jan 1, 1990.
 
-// const dateFilter = personArray.filter(persons => (persons.birthDate.length[-4] < 1990))
-
-// function dateFilter(personArray) {
-//     if (birthDate.length)
-// }
-
-// const dateFilter = personArray.substring(personArray["birthDate"].length - 4);
-
-// console.log("7. ", personArray.filter(dateFilter))
-
 let oldies = personArray.filter(function birthday(birthYear){
-//using regex to search each element for a space followed by four numbers/digits
-let r = /[' ']\d{4}/
-  
-//but .match() was giving me issues because I wasn't targeting a string with my parameter birthYear, so I made a variable to get the string
-let stringElements = birthYear.birthDate;
-  
-//now that stringElements is a string, I can use match() to compare the value to my regex criteria.
-if (stringElements.match(r) <= 1990) {
-    console.log("7. ", birthYear.firstName + ' ' + birthYear.lastName)
+    //using regex to search each element for a space followed by four numbers/digits
+    let r = /[' ']\d{4}/;
+    //but .match() was giving me issues because I wasn't targeting a string with my parameter birthYear, so I made a variable to get the string
+    let stringElements = birthYear.birthDate;
+    //now that stringElements is a string, I can use match() to compare the value to my regex criteria.
+    if (stringElements.match(r) <= 1990) {
+        console.log("7. ", birthYear.firstName + ' ' + birthYear.lastName)
     }
 })
-
-
-
-
-
-
-// for (person.birthDate in person) {
-//     for (let i = 0; i < person.length; i++) {
-//         let birthSplit = person[i].birthDate.split(' ');
-//         if (birthSplit[2] % 2 !== 0) {
-//             let birthReturn = birthSplit.join(' ');
-//             console.log("3. ", birthReturn);
-//         } else {
-//             console.log('false');
-//         }
-//     }
-// }
