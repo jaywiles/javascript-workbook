@@ -11,6 +11,40 @@ let jobTypes = {
 
 // Your code here
 
+class CrewMember {
+  // these are specifically laid out in test
+  constructor(name, job, specialSkill, ship){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = ship;
+  }
+  // pulls in ship name -- pushes ship value to crew members thereby assigning them to the ship
+  enterShip(ship) {
+    this.ship = ship;
+    ship.crew.push(this);
+  }
+}
+
+class Ship {
+  // these are specifically laid out in test
+  constructor(name, type, ability, crew){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+  missionStatement(ability) {
+    // statement below checks for person being pushed to crew array in last test
+    if (this.crew.length > 0) {
+      return this.ability;
+    } else {
+      // test is specifically looking for this statement
+      return "Can't perform a mission yet.";
+    }
+  }
+}
+
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
