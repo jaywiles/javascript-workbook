@@ -1,3 +1,10 @@
+// write function to put pieces on board
+// creation function called moveChecker that defines pieces can only move in one direction and diagonally (maybe start with if statements so if it's X's turn, only X can move and they can only move in one direction) -- does this need to be split up into two validMove functions maybe and then put moveChecker after that?
+// function that allows AND forces player to jump opponent if it's possible, and taking out the piece that's jumped over
+// need function to switch player
+// write functions to declare kings at the other end of the board -- maybe use color to show if piece has become king?
+// write function to check for win and console.log when one player captures all of other player's pieces
+
 'use strict';
 
 const assert = require('assert');
@@ -51,7 +58,7 @@ class Board {
     }
     console.log(string);
   }
-
+  
   // Your code here
 }
 
@@ -109,3 +116,26 @@ if (typeof describe === 'function') {
 } else {
   getPrompt();
 }
+
+
+
+
+
+// ' ', '○', ' ', '○', ' ', '○', ' ', '○',
+// '○', ' ', '○', ' ', '○', ' ', '○', ' ',
+// ' ', '○', ' ', '○', ' ', '○', ' ', '○',
+// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+// '●', ' ', '●', ' ', '●', ' ', '●', ' ',
+// ' ', '●', ' ', '●', ' ', '●', ' ', '●',
+// '●', ' ', '●', ' ', '●', ' ', '●', ' '
+
+
+// ' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O',
+// 'O', ' ', 'O', ' ', 'O', ' ', 'O', ' ',
+// ' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O',
+// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+// 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' ',
+// ' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X',
+// 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '
