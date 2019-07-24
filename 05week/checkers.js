@@ -34,7 +34,8 @@ class Board {
   constructor() {
     this.grid = [],
     this.checkers = [],
-    this.createCheckers = []
+    this.createCheckers = [],
+    this.selectChecker = [row, column],
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -101,7 +102,9 @@ class Board {
       }
     }
   }
+  moveChecker() {
 
+  }
   
   
 
@@ -122,11 +125,13 @@ class Board {
 
 class Game {
   constructor() {
-    this.board = new Board;
+    this.board = new Board,
+    this.moveChecker = [start, end]
   }
   start() {
     this.board.createGrid();
     this.board.placePieces();
+    this.board.moveChecker();
   }
 }
 
