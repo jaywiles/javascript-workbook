@@ -89,7 +89,8 @@ class Board {
       } else if (r >= 5) {
         for (let c = 0; c < 8; c++) {
           // if column values are odd and row values are even
-          if ((c % 2 !== 0) && (r % 2 === 0)) {
+          // no clue why i had to hard code row 6 in on line below
+          if ((c % 2 !== 0) && (r === 6)) {
             this.grid[r][c] = blackChecker;
             this.checkers.push(this.blackChecker);
           } else if ((c %2 == 0) && (r %2 !== 0)) {
