@@ -15,13 +15,26 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
-  // Your code here
+class Checker {
+  constructor(color) {
+     if (color == 'white') {
+       this.symbol = '○',
+       this.name = 'white'
+     } else {
+       this.symbol = '●',
+       this.name = 'black'
+     }
+  }
 }
+
+const whiteChecker = new Checker('white')
+const blackChecker = new Checker('black')
 
 class Board {
   constructor() {
-    this.grid = []
+    this.grid = [],
+    this.checkers = [],
+    this.createCheckers = []
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -46,6 +59,8 @@ class Board {
         if (this.grid[row][column]) {
           // push the symbol of the check in that location into the array
           rowOfCheckers.push(this.grid[row][column].symbol);
+          // line below changes pieces to [object Object]
+          // rowOfCheckers.push(this.grid[row][column]);
         } else {
           // just push in a blank space
           rowOfCheckers.push(' ');
@@ -58,9 +73,51 @@ class Board {
     }
     console.log(string);
   }
+  placePieces() {    
+    for (let r = 0; r <= 8; r++) {
+      if (r <= 2) {
+        for (let c = 0; c < 8; c++) {
+          // if column values are odd and row values are even
+          if ((c %2 !== 0) && (r % 2 === 0)) {
+            this.grid[r][c] = whiteChecker;
+            this.checkers.push(this.whiteChecker);
+          } else if ((c %2 == 0) && r %2 !== 0) {
+            this.grid[r][c] = whiteChecker;
+            this.checkers.push(this.whiteChecker);
+          }
+        }
+      } else if (r >= 5) {
+        for (let c = 0; c < 8; c++) {
+          // if column values are odd and row values are even
+          if ((c % 2 !== 0) && (r % 2 === 0)) {
+            this.grid[r][c] = blackChecker;
+            this.checkers.push(this.blackChecker);
+          } else if ((c %2 == 0) && (r %2 !== 0)) {
+            this.grid[r][c] = blackChecker;
+            this.checkers.push(this.blackChecker);
+          }
+        }
+      }
+    }
+  }
+
   
-  // Your code here
+  
+
+
+
 }
+
+// isValidMove:
+// ending position needs to be empty
+// odd vs even changes -- also must move forward until kinged
+// column must go up/down by one depending on color and column has to go up or down one
+
+// jumpPiece:
+// for jumping, take number as a whole - magic number you're looking for is: one jump: 11, -11, 9, -9 // two jumps: -22, 22, -18, 18 after taking number as a whole
+
+// isAWin:
+// other player has no
 
 class Game {
   constructor() {
@@ -68,6 +125,7 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.placePieces();
   }
 }
 
@@ -139,3 +197,33 @@ if (typeof describe === 'function') {
 // 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' ',
 // ' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X',
 // 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '
+
+
+
+
+
+    // let whitePositions = [
+    //   [0, 1], [0, 3], [0, 5], [0, 7],
+    //   [1, 0], [1, 2], [1, 4], [1, 6],
+    //   [2, 1], [2, 3], [2, 5], [2, 7]
+    // ];
+    // for (let i = 0; i < 12; i++) {
+    //   let whiteRow = whitePositions[i][0]
+    //   let whiteColumn = whitePositions[i][1]
+
+    //   this.grid[whiteRow][whiteColumn] = whiteChecker;
+    //   this.checkers.push(whiteChecker);
+    // }
+
+    // let blackPositions = [
+    //   [5, 0], [5, 2], [5, 4], [5, 6],
+    //   [6, 1], [6, 3], [6, 5], [6, 7],
+    //   [7, 0], [7, 2], [7, 4], [7, 6]
+    // ];
+    // for (let i = 0; i < 12; i++) {
+    //   let blackRow = blackPositions[i][0]
+    //   let blackColumn = blackPositions[i][1]
+
+    //   this.grid[blackRow][blackColumn] = blackChecker;
+    //   this.checkers.push(blackChecker);
+    // }
