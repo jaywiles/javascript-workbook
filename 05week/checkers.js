@@ -34,8 +34,8 @@ class Board {
   constructor() {
     this.grid = [],
     this.checkers = [],
-    this.createCheckers = [],
-    this.selectChecker = [row, column],
+    this.createCheckers = []
+    // this.selectChecker = [row, column]
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -102,11 +102,69 @@ class Board {
       }
     }
   }
-  moveChecker() {
 
+  isValidInput(whichPiece, toWhere) {
+    let start = whichPiece.split('');
+    let end = toWhere.split('');
+    let startX = start[0];
+    let startY = start[1];
+    let endX = end[0];
+    let endY = end[1];
+
+    // integrate above into below
+
+    const is0to7 = num => {
+      if (num.x <= 7 && num.x >= 0) {
+        return true;
+      };
+      if (num.y <= 7 && num.y >= 0) {
+        return true;
+      };
+    }
+    const isInputOdd = coords => {
+      if ((coords.x + coords.y) %2 !== 0) {
+        return true;
+      };
+    }
+    const isEmpty = endCoords => {
+      if (this.board.grid[endCoords.x][endCoords.y] === null) {
+        return true;
+      };
+    }
+    return is0to7 && isInputOdd(whichPiece) && isInputOdd(toWhere) && isEmpty(whichPiece) && !isEmpty(toWhere)
+  }
+  
+  moveChecker() {
+    singleMove(whichPiece, toWhere) {
+      if (whichPiece > toWhere) {
+        
+        return (end.x-start.x === -1) // or +1 depending on which color's turn it is
+        && (end.y-start.y === 1 || -1) // move left and right
+
+      }
+    }
+    jumpMove(whichPiece, toWhere) {
+
+      // inside if statemeent?
+      // change return from singleMove to 2 and -2
+      // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
+
+
+
+    }
   }
   
   
+  // where do i put this...?????
+  isJumpValid(start, end) {
+    if(validInput) {
+      if(this.player === one of them) {
+        if (end.x < start.x) {
+          this.board.grid[start.x - 1][start.y - 1] && this.board.grid[end.x - 1][end.y - 1];
+        }
+      }
+    }
+  }
 
 
 
@@ -125,8 +183,8 @@ class Board {
 
 class Game {
   constructor() {
-    this.board = new Board,
-    this.moveChecker = [start, end]
+    this.board = new Board
+    // this.moveChecker = start, end
   }
   start() {
     this.board.createGrid();
@@ -185,25 +243,6 @@ if (typeof describe === 'function') {
 
 
 
-// ' ', '○', ' ', '○', ' ', '○', ' ', '○',
-// '○', ' ', '○', ' ', '○', ' ', '○', ' ',
-// ' ', '○', ' ', '○', ' ', '○', ' ', '○',
-// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-// '●', ' ', '●', ' ', '●', ' ', '●', ' ',
-// ' ', '●', ' ', '●', ' ', '●', ' ', '●',
-// '●', ' ', '●', ' ', '●', ' ', '●', ' '
-
-
-// ' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O',
-// 'O', ' ', 'O', ' ', 'O', ' ', 'O', ' ',
-// ' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O',
-// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-// ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-// 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' ',
-// ' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X',
-// 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' '
-
 
 
 
@@ -233,3 +272,28 @@ if (typeof describe === 'function') {
     //   this.grid[blackRow][blackColumn] = blackChecker;
     //   this.checkers.push(blackChecker);
     // }
+
+
+
+    // isValidInput(whichPiece, toWhere) {
+    //   // defines valid row and column values
+    //   const validRows = ['0', '1', '2', '3', '4', '5', '6', '7'];
+    //   const validEvenColumns = ['0', '2', '4', '6'];
+    //   const validOddColumns = ['1', '3', '5', '7'];
+  
+    //   // splits the checker positions into an array
+    //   const pieceArr = whichPiece.split('');
+    //   const endArr = toWhere.split('');
+  
+    //   // make sure both inputs are two characters long
+    //   if ()
+  
+  
+    // }
+  
+
+
+    // let start = whichPiece.split('');
+    // let end = toWhere.split('');
+    // let startX = start[0];
+    // let 
