@@ -219,7 +219,8 @@ class Game {
       if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
         if ([toWhere[0]][toWhere[1]] == null) {
           if(((whichPiece - toWhere)/2) !== playerTurn) {
-            
+            let removedPiece = ((whichPiece - toWhere)/2);
+            removedPiece() = null;
           }
         }
       }
