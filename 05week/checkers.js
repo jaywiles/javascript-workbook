@@ -130,104 +130,112 @@ class Game {
     // this.moveChecker();
   }
 
-  // selectChecker(row, column) {
-  //   return true;
+  // isValidInput(whichPiece, toWhere) {
+  //   let start = whichPiece.split('');
+  //   let end = toWhere.split('');
+  //   let startX = start[0];
+  //   let startY = start[1];
+  //   let endX = end[0];
+  //   let endY = end[1];
+
+  //   const is0to7 = () => {
+  //     if (((startX || endX || startY || endY) <=7) && ((startX || endX || startY || endY) >= 0)) {
+  //       console.log('first test working');
+  //       return true;
+  //     };
+  //   }
+  //   const isInputOdd = () => {
+  //     if ((startX + startY) && (endX + endY) %2 !== 0) {
+  //       console.log('second test working');
+  //       return true;
+  //     };
+  //   }
+  //   const isEmpty = () => {
+  //     if (this.board.grid[endX][endY] === null) {
+  //       console.log('third test working');
+  //       return true;
+  //     };
+  //   }
+  //   // put in comparing numbers of whichPiece and toWhere
+  //   const findRightPlayer = () => {
+  //     // if piece being grabbed if black...
+  //     if (playerTurn === blackChecker) {
+  //       if (whichPiece > toWhere) {
+  //         // if ending X-axis position is going to be greater & ending Y position moves it left or right one, return true
+  //         if (((endX - startX) === 1) && ((endY - startY) === (1 || -1))) {
+  //           console.log('fourth test working for black')
+  //           return true;
+  //         }
+  //         // need else if to target kinged pieces
+  //       }
+  //     // if piece being grabbed is white...
+  //     } else if (playerTurn === whiteChecker) {
+  //       if (whichPiece < toWhere) {
+  //         // if ending X-axis position is going to be less than & ending Y position moves it left or right by one, return true
+  //         if (((endX - startX === -1) && (endY - startY) === (1 || -1))) {
+  //           console.log('fourth test working for white');
+  //           return true;
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return is0to7() 
+  //   && isInputOdd(whichPiece) 
+  //   && isInputOdd(toWhere) 
+  //   && isEmpty(whichPiece) 
+  //   && !isEmpty(toWhere) 
+  //   && findRightPlayer(whichPiece)
+  //   && findRightPlayer(toWhere);
   // }
 
-
-
-  isValidInput(whichPiece, toWhere) {
-    let start = whichPiece.split('');
-    let end = toWhere.split('');
-    let startX = start[0];
-    let startY = start[1];
-    let endX = end[0];
-    let endY = end[1];
-
-    const is0to7 = () => {
-      if (((startX || endX || startY || endY) <=7) && ((startX || endX || startY || endY) >= 0)) {
-        return true;
-      };
-    }
-    const isInputOdd = () => {
-      if ((startX + startY) && (endX + endY) %2 !== 0) {
-        return true;
-      };
-    }
-    const isEmpty = () => {
-      if (this.board.grid[endX][endY] === null) {
-        return true;
-      };
-    }
-    // put in comparing numbers of whichPiece and toWhere
-    const findRightPlayer = () => {
-      // if piece being grabbed if black...
-      if (whichPiece == blackChecker) {
-        if (whichPiece > toWhere) {
-          // if ending X-axis position is going to be greater & ending Y position moves it left or right one, return true
-          if (((endX - startX) === -1) && ((endY - startY) === (1 || -1))) {
-            return true;
-          }
-          // need else if to target kinged pieces
-        }
-      // if piece being grabbed is white...
-      } else if (whichPiece == whiteChecker) {
-        if (whichPiece < toWhere) {
-          // if ending X-axis position is going to be less than & ending Y position moves it left or right by one, return true
-          if (((endX - startX === 1) && (endY - startY) === (1 || -1))) {
-            return true;
-          }
-        }
-  
-      }
-    }
-    return is0to7 && isInputOdd(whichPiece) && isInputOdd(toWhere) && isEmpty(whichPiece) && !isEmpty(toWhere) && findRightPlayer();
-  }
-
   moveChecker(whichPiece, toWhere) {
+    // isValidInput();
     this.board.grid[whichPiece[0]][whichPiece[1]] = null;
     this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
-    switchPlayer();
-  }
 
-  jumpMove(whichPiece, toWhere) {
-    // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
-    if (playerTurn == blackChecker) {
-      // if move is trying to go 18 or 22 spaces on the grid...
+    // const jumpMove = (whichPiece, toWhere) => {
+    // // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
+    //   if (playerTurn == blackChecker) {
+    //     // if move is trying to go 18 or 22 spaces on the grid...
+    //     if ((whichPiece - toWhere) === (18 || -18 || 22 || -22)) {
+    //       // if space where checker is going is null...
+    //       if ([toWhere[0]][toWhere[1]] == null) {
+    //         // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
+    //         // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
+    //         // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
+    //         if (((whichPiece - toWhere)/2) !== null) {
+    //           this.board.grid = null;
+    //         }
+    //       }
+    //     } 
+    //   } else {
+    //     console.log('That is not a valid jump move.')
+    //     return false;
+    //   }
+    // }
+    // jumpMove();
+
+    const jumpChecker = () => {
       if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
-        // if space where checker is going is null...
-        if ((toWhere) == null) {
-          // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
-          // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
-          // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
-          if (((whichPiece - toWhere)/2) !== (null && this.player)) {
-            return true;
+        if ([toWhere[0]][toWhere[1]] == null) {
+          if(((whichPiece - toWhere)/2) !== playerTurn) {
+            
           }
         }
       }
     }
 
-
-
+    jumpChecker();
+    switchPlayer();
   }
-
-  
-  
-
-
-
-  countPieces() {
-    let count = 0;
-    let p = 0;
-    
-  }
-
 }
+// count pieces function
 
 function getPrompt() {
   game.board.viewGrid();
   rl.question('which piece?: ', (whichPiece) => {
     rl.question('to where?: ', (toWhere) => {
+      // game.isValidInput(whichPiece, toWhere);
       game.moveChecker(whichPiece, toWhere);
       getPrompt();
     });
@@ -273,7 +281,27 @@ if (typeof describe === 'function') {
 
 
 
-
+// const jumpMove = (whichPiece, toWhere) => {
+//   // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
+//   if (playerTurn == blackChecker) {
+//     // if move is trying to go 18 or 22 spaces on the grid...
+//     if ((whichPiece - toWhere) === (18 || -18 || 22 || -22)) {
+//       // if space where checker is going is null...
+//       if (toWhere == null) {
+//         // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
+//         // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
+//         // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
+//         if (((whichPiece - toWhere)/2) !== null) {
+//           this.board.grid = null;
+//         }
+//       }
+//     } 
+//   } else {
+//     console.log('That is not a valid jump move.')
+//     return false;
+//   }
+// }
+// // return jumpMove();
 
 
 
