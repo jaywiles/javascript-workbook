@@ -121,22 +121,19 @@ const switchPlayer = () => {
 class Game {
   constructor() {
     this.board = new Board
-    // this.moveChecker = (start, end)
   }
   start() {
     this.board.createGrid();
     this.board.placePieces();
-    // should i put jumpMove function here so we can just get that out of the way?
-    // this.moveChecker();
   }
 
   // isValidInput(whichPiece, toWhere) {
-  //   let start = whichPiece.split('');
-  //   let end = toWhere.split('');
-  //   let startX = start[0];
-  //   let startY = start[1];
-  //   let endX = end[0];
-  //   let endY = end[1];
+    // let start = whichPiece.split('');
+    // let end = toWhere.split('');
+    // let startX = start[0];
+    // let startY = start[1];
+    // let endX = end[0];
+    // let endY = end[1];
 
   //   const is0to7 = () => {
   //     if (((startX || endX || startY || endY) <=7) && ((startX || endX || startY || endY) >= 0)) {
@@ -216,11 +213,20 @@ class Game {
     // jumpMove();
 
     const jumpChecker = () => {
+      // distance in the array of all spaces for a jump move is either 18 or 22 spaces
       if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
+        // if the coordinates in toWhere are empty...
         if ([toWhere[0]][toWhere[1]] == null) {
-          if(((whichPiece - toWhere)/2) !== playerTurn) {
+          // if space in between -- so either half of 18 which is 9 or half of 22 which is 11 -- don't equal the player who's going or null...
+          if (((whichPiece - toWhere)/2) !== playerTurn && null) {
+            // defining variable for piece in the middle to remove
             let removedPiece = ((whichPiece - toWhere)/2);
-            removedPiece() = null;
+            // splitting that variable so it's attainable
+            let killPiece = removedPiece.split('');
+            // if piece that's being killed do not equal player that's going or null
+            if (([killPiece[0]][killPiece[1]]) !== playerTurn && null) {
+              killPiece = null;
+            }
           }
         }
       }
