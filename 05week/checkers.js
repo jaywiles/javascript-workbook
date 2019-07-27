@@ -18,10 +18,10 @@ const rl = readline.createInterface({
 class Checker {
   constructor(color) {
      if (color == 'white') {
-       this.symbol = '○',
+       this.symbol = '●',
        this.name = 'white'
      } else {
-       this.symbol = '●',
+       this.symbol = '○',
        this.name = 'black'
      }
   }
@@ -113,62 +113,150 @@ class Board {
 
     // integrate above into below
 
-    const is0to7 = num => {
-      if (num.x <= 7 && num.x >= 0) {
-        return true;
-      };
-      if (num.y <= 7 && num.y >= 0) {
+    const is0to7 = () => {
+      if (startX <= 7 && startX >= 0 && startY <= 7 && startY >= 0) {
         return true;
       };
     }
-    const isInputOdd = coords => {
-      if ((coords.x + coords.y) %2 !== 0) {
+    const isInputOdd = () => {
+      if ((startX + startY) && (endX + endY) %2 !== 0) {
         return true;
       };
     }
-    const isEmpty = endCoords => {
-      if (this.board.grid[endCoords.x][endCoords.y] === null) {
+    const isEmpty = () => {
+      if (this.board.grid[endX][endY] === null) {
         return true;
       };
     }
-    return is0to7 && isInputOdd(whichPiece) && isInputOdd(toWhere) && isEmpty(whichPiece) && !isEmpty(toWhere)
+    return is0to7 && isInputOdd(whichPiece) && isInputOdd(toWhere) && isEmpty(whichPiece) && !isEmpty(toWhere);
   }
   
-  moveChecker() {
-    singleMove(whichPiece, toWhere) {
-      if (whichPiece > toWhere) {
-        
-        return (end.x-start.x === -1) // or +1 depending on which color's turn it is
-        && (end.y-start.y === 1 || -1) // move left and right
-
+  moveChecker(whichPiece, toWhere, startX, startY, endX, endY) {
+    // ! ONLY ONE OF THE FOLLOWING TWO MAIN IF STATEMENTS ARE GOING TO WORK !
+    // targets black checkers which are at bottom of board to start
+    if (whichPiece > toWhere) {
+      // if ending X-axis position is going to be greater & ending Y position moves it left or right one, return true
+      if (((endX - startX) === 1) && ((endY - startY) === (1 || -1))) {
+        return true;
       }
     }
-    jumpMove(whichPiece, toWhere) {
-
-      // inside if statemeent?
-      // change return from singleMove to 2 and -2
-      // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
-
-
-
+    // targets white checkers which are at top of board to start
+    if (whichPiece < toWhere) {
+      // if ending X-axis position is going to be less than & ending Y position moves it left or right by one, return true
+      if (((endX - startX === -1) && (endY - startY) === (1 || -1))) {
+        return true;
+      }
     }
   }
-  
-  
-  // where do i put this...?????
-  isJumpValid(start, end) {
-    if(validInput) {
-      if(this.player === one of them) {
-        if (end.x < start.x) {
-          this.board.grid[start.x - 1][start.y - 1] && this.board.grid[end.x - 1][end.y - 1];
+
+  jumpMove(whichPiece, toWhere, startX, startY, endX, endY) {
+    // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
+    if (this.player === ) {
+      // if move is trying to go 18 or 22 spaces on the grid...
+      if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
+        // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
+        // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
+        // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
+        if (((whichPiece - toWhere)/2) !== null && this.player) {
+          // if space where checker is going is null...
+          if ((whichPiece - toWhere) == null) {
+            return true;
+          }
         }
       }
     }
+
+    // inside if statemeent?
+    // change return from singleMove to 2 and -2
+    // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
+
+
+
   }
+
+  
+  
+  // // where do i put this...?????
+  // isJumpValid(start, end) {
+  //   if(validInput) {
+  //     if(this.player === one of them) {
+  //       if (end.x < start.x) {
+  //         this.board.grid[start.x - 1][start.y - 1] && this.board.grid[end.x - 1][end.y - 1];
+  //       }
+  //     }
+  //   }
+  // }
 
 
 
 }
+
+// isValidInput(whichPiece, toWhere) {
+//   let start = whichPiece.split('');
+//   let end = toWhere.split('');
+//   let startX = start[0];
+//   let startY = start[1];
+//   let endX = end[0];
+//   let endY = end[1];
+
+//   // integrate above into below
+
+//   const is0to7 = num => {
+//     if (num.x <= 7 && num.x >= 0) {
+//       return true;
+//     };
+//     if (num.y <= 7 && num.y >= 0) {
+//       return true;
+//     };
+//   }
+//   const isInputOdd = coords => {
+//     if ((coords.x + coords.y) %2 !== 0) {
+//       return true;
+//     };
+//   }
+//   const isEmpty = endCoords => {
+//     if (this.board.grid[endCoords.x][endCoords.y] === null) {
+//       return true;
+//     };
+//   }
+//   return is0to7 && isInputOdd(whichPiece) && isInputOdd(toWhere) && isEmpty(whichPiece) && !isEmpty(toWhere);
+// }
+
+// moveChecker() {
+//   singleMove(whichPiece, toWhere) {
+//     if (whichPiece > toWhere) {
+      
+//       return (end.x-start.x === -1) // or +1 depending on which color's turn it is
+//       && (end.y-start.y === 1 || -1) // move left and right
+
+//     }
+//   }
+//   jumpMove(whichPiece, toWhere) {
+
+//     // inside if statemeent?
+//     // change return from singleMove to 2 and -2
+//     // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
+
+
+
+//   }
+// }
+
+
+// // where do i put this...?????
+// isJumpValid(start, end) {
+//   if(validInput) {
+//     if(this.player === one of them) {
+//       if (end.x < start.x) {
+//         this.board.grid[start.x - 1][start.y - 1] && this.board.grid[end.x - 1][end.y - 1];
+//       }
+//     }
+//   }
+// }
+
+
+
+// }
 
 // isValidMove:
 // ending position needs to be empty
