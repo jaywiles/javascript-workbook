@@ -150,30 +150,31 @@ class Board {
     }
   }
 
-  // jumpMove(whichPiece, toWhere) {
-  //   // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
-  //   if (this.player === ) {
-  //     // if move is trying to go 18 or 22 spaces on the grid...
-  //     if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
-  //       // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
-  //       // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
-  //       // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
-  //       if (((whichPiece - toWhere)/2) !== null && this.player) {
-  //         // if space where checker is going is null...
-  //         if ((whichPiece - toWhere) == null) {
-  //           return true;
-  //         }
-  //       }
-  //     }
-  //   }
+  jumpMove(whichPiece, toWhere) {
+    // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
+    if (this.player === ) {
+      // if move is trying to go 18 or 22 spaces on the grid...
+      if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
+        // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
+        // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
+        // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
+        if (((whichPiece - toWhere)/2) !== null && this.player) {
+          // if space where checker is going is null...
+          if ((whichPiece - toWhere) == null) {
+            return true;
+          }
+        }
+      }
+    }
+    // another if statement for multiple jumps...
 
-  //   // inside if statement?
-  //   // change return from singleMove to 2 and -2
-  //   // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
+    // inside if statement?
+    // change return from singleMove to 2 and -2
+    // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
 
 
 
-  // }
+  }
 
   
   
