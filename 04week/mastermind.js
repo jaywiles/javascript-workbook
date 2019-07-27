@@ -11,6 +11,9 @@ let board = [];
 let solution = '';
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+// this is to get colors for red peg answers
+var colors = require('colors');
+
 function printBoard() {
   for (let i = 0; i < board.length; i++) {
     console.log(board[i]);
@@ -18,25 +21,79 @@ function printBoard() {
 }
 
 function generateSolution() {
-  for (let i = 0; i < 4; i++) {
-    const randomIndex = getRandomInt(0, letters.length);
-    solution += letters[randomIndex];
-  }
+	for (let i = 0; solution.split('').length < 4; i++) {
+		const randomIndex = getRandomInt(0, letters.length);
+		if (!solution.split('').includes(letters[randomIndex]) ) {
+			solution += letters[randomIndex];
+		}
+	}
 }
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
-  // your code here
+function validInput(guessArray) {
+  for (let i = 0; i < guessArray.length; i++) {
+    if (!letters.includes(guessArray[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+const guessesRemaining = () => {
+  console.log(`You have ${10 - board.length} guesses remaining.`);
+  return board.length < 10;
+};
+
+function generateHint(guessArray, solutionArray) {
+	let redPeg = 0;
+	let whitePeg = 0;
+	for (let i = 0; i < solutionArray.length; i++) {
+		if (guessArray[i] === solutionArray[i]) {
+			redPeg++;
+			// remove the guess that has already been tested
+			solutionArray[i] = null;
+		}
+	}
+	// Loop through the updated array to find all correct letters
+	// without adding more than one white peg for multiple correct letters
+	for (let i = 0; i < solutionArray.length; i++) {
+		let targetIndex = solutionArray.indexOf(guessArray[i]);
+		if(targetIndex > -1){
+			whitePeg++;
+			// remove all guesses that match the current guess
+			solutionArray[targetIndex] = null;
+		}
+  }
+  guessesRemaining();
+	console.log(colors.red(redPeg) + '-' + whitePeg);
+	return redPeg + '-' + whitePeg;
 }
 
 function mastermind(guess) {
-  solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
+  // console.log( "Solution: " + solution + "\n" + "Guess: " + guess )
+  // solution = generateSolution();
+  solution = 'abcd';
+  // splits each character in guess so each can be checked
+  const guessArray = guess.split('');
+  // splits each character in solution so each can be checked
+  const solutionArray = solution.split('');
+  
+  if (guessArray.length === 4) {
+		if (guess === solution) {
+			console.log('You guessed it!');
+			return 'You guessed it!'; 
+		} else if (validInput(guessArray)) {
+			board.unshift(guess + ": " + generateHint(guessArray, solutionArray))
+		} else {
+			console.log('You must enter a letter between "a" and "h".');
+		}
+	} else {
+		console.log('Please input four letters.');
+	}
 }
-
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {

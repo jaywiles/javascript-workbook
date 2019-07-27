@@ -13,30 +13,62 @@ let stacks = {
   c: []
 };
 
+let newStacks = {
+  a: [4, 3, 2, 1],
+  b: [],
+  c: []
+};
+
 function printStacks() {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
-
+function movePiece(startStack, endStack) {
+  // pulls letter from end of the stack I'm pulling from and assigns it to variable
+  let fromLetter = stacks[startStack].pop();
+  // using variable, this pushes same letter to endStack (destination stack)
+  stacks[endStack].push(fromLetter);
 }
 
-function isLegal() {
-  // Your code here
-
+function isLegal(startStack, endStack) {
+  // call the value of the last element of the array.. -1 because arrays automatically start at an index of 0
+  let startIndex = stacks[startStack].length -1;
+  let endIndex = stacks[endStack].length -1;
+  // stacks calls the object.. startStack and endStack call the entire array.. and use startIndex and endIndex above to pass in value
+  if ((stacks[startStack][startIndex] < stacks[endStack][endIndex]) || stacks[endStack].length === 0) {
+    movePiece(startStack, endStack);
+    return true
+  } else {
+    console.log('That move is not allowed.')
+    return false
+  }
 }
 
 function checkForWin() {
-  // Your code here
+  // the next two lines do the exact same thing.. but are exactly the opposite
+  // the first checks to see if a and c are empty.. the second checks to see if all four are in b
+  if (stacks.a.length === 0 && stacks.c.length === 0) {
+  // if (stacks.b.length === 4) {
+    console.log("Winner, winner! Chicken dinner!")
+    return true
+  } else {
+    return false
+  }
+}
 
+function clearGame() {
+  if (checkForWin() == true) {
+    stacks = newStacks;
+  }
 }
 
 function towersOfHanoi(startStack, endStack) {
-  // Your code here
-
+  // isLegal contains the movePiece() function
+  isLegal(startStack, endStack);
+  // clearGame contains the checkForWin() function
+  clearGame();
 }
 
 function getPrompt() {
