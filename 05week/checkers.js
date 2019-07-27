@@ -1,9 +1,10 @@
-// write function to put pieces on board
-// creation function called moveChecker that defines pieces can only move in one direction and diagonally (maybe start with if statements so if it's X's turn, only X can move and they can only move in one direction) -- does this need to be split up into two validMove functions maybe and then put moveChecker after that?
-// function that allows AND forces player to jump opponent if it's possible, and taking out the piece that's jumped over
-// need function to switch player
-// write functions to declare kings at the other end of the board -- maybe use color to show if piece has become king?
-// write function to check for win and console.log when one player captures all of other player's pieces
+// ! STATUS UPDATE !
+// TODO: 1. Need to figure out how to count checkers on board
+// TODO: 2. How to make kings work... how they move and jump
+// TODO: 3. I keep returning true... what else should I be doing??
+// TODO: 4. I need a function to switch players...
+// TODO: 5. My jumpMove function is only for one jump, not multiple...
+// TODO: 6. How to make my this.moveChecker (start, end) work in my Game class... is that even what it's supposed to look like?
 
 'use strict';
 
@@ -149,30 +150,30 @@ class Board {
     }
   }
 
-  jumpMove(whichPiece, toWhere, startX, startY, endX, endY) {
-    // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
-    if (this.player === ) {
-      // if move is trying to go 18 or 22 spaces on the grid...
-      if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
-        // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
-        // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
-        // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
-        if (((whichPiece - toWhere)/2) !== null && this.player) {
-          // if space where checker is going is null...
-          if ((whichPiece - toWhere) == null) {
-            return true;
-          }
-        }
-      }
-    }
+  // jumpMove(whichPiece, toWhere) {
+  //   // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
+  //   if (this.player === ) {
+  //     // if move is trying to go 18 or 22 spaces on the grid...
+  //     if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
+  //       // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
+  //       // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
+  //       // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
+  //       if (((whichPiece - toWhere)/2) !== null && this.player) {
+  //         // if space where checker is going is null...
+  //         if ((whichPiece - toWhere) == null) {
+  //           return true;
+  //         }
+  //       }
+  //     }
+  //   }
 
-    // inside if statemeent?
-    // change return from singleMove to 2 and -2
-    // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
+  //   // inside if statement?
+  //   // change return from singleMove to 2 and -2
+  //   // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
 
 
 
-  }
+  // }
 
   
   
@@ -233,7 +234,7 @@ class Board {
 //   }
 //   jumpMove(whichPiece, toWhere) {
 
-//     // inside if statemeent?
+//     // inside if statement?
 //     // change return from singleMove to 2 and -2
 //     // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
 
@@ -272,11 +273,12 @@ class Board {
 class Game {
   constructor() {
     this.board = new Board
-    // this.moveChecker = start, end
+    // this.moveChecker = (start, end)
   }
   start() {
     this.board.createGrid();
     this.board.placePieces();
+    // should i put jumpMove function here so we can just get that out of the way?
     this.board.moveChecker();
   }
 }
