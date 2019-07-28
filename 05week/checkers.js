@@ -187,58 +187,92 @@ class Game {
 
   moveChecker(whichPiece, toWhere) {
     // isValidInput();
-    this.board.grid[whichPiece[0]][whichPiece[1]] = null;
-    this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
+    // if (whichPiece - toWhere == 7 || -7 || 9 || -9) {
 
-    // const jumpMove = (whichPiece, toWhere) => {
-    // // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
-    //   if (playerTurn == blackChecker) {
-    //     // if move is trying to go 18 or 22 spaces on the grid...
-    //     if ((whichPiece - toWhere) === (18 || -18 || 22 || -22)) {
-    //       // if space where checker is going is null...
-    //       if ([toWhere[0]][toWhere[1]] == null) {
-    //         // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
-    //         // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
-    //         // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
-    //         if (((whichPiece - toWhere)/2) !== null) {
-    //           this.board.grid = null;
-    //         }
-    //       }
-    //     } 
-    //   } else {
-    //     console.log('That is not a valid jump move.')
-    //     return false;
-    //   }
-    // }
-    // jumpMove();
-
-    const jumpChecker = () => {
-      // distance in the array of all spaces for a jump move is either 18 or 22 spaces
-      if (whichPiece - toWhere === (18 || -18 || 22 || -22)) {
-        // if the coordinates in toWhere are empty...
-        if ([toWhere[0]][toWhere[1]] == null) {
-          // if space in between -- so either half of 18 which is 9 or half of 22 which is 11 -- don't equal the player who's going or null...
-          if (((whichPiece - toWhere)/2) !== playerTurn && null) {
-            // defining variable for piece in the middle to remove
-            let removedPiece = ((whichPiece - toWhere)/2);
-            // splitting that variable so it's attainable
-            let killPiece = removedPiece.split('');
-            // if piece that's being killed do not equal player that's going or null
-            if (([killPiece[0]][killPiece[1]]) !== playerTurn && null) {
-              killPiece = null;
-            }
+    const singleMove = () => {
+      // if it's black's turn...
+      if (playerTurn == blackChecker) {
+        // if piece is trying to move up one row (one row lower numerically)...
+        if ([whichPiece[0]] - 1 == [toWhere[0]]) {
+          // if piece is either moving left or right one space...
+          if (([whichPiece[1]] - 1 == [toWhere[1]]) || ([toWhere[1]] - 1 == [whichPiece[1]])) {
+            // ! need if statement to test if space is empty... !
+            // if (toWhere !== (whiteChecker || blackChecker)) {
+              // set space that piece was in to null...
+              this.board.grid[whichPiece[0]][whichPiece[1]] = null;
+              // ... and make space piece is moving to equal to the player that's moving it
+              this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
+              switchPlayer();
+            // }
+          }
+        }
+        // if it's white's turn
+      } else if (playerTurn == whiteChecker) {
+        // if piece is trying to move down one row (one row up numerically)...
+        // ! line above and line below are the only ones that are different from black... !
+        if ([toWhere[0]] - 1 == [whichPiece[0]]) {
+          if (([whichPiece[1]] - 1 == [toWhere[1]]) || ([toWhere[1]] - 1 == [whichPiece[1]])) {
+            this.board.grid[whichPiece[0]][whichPiece[1]] = null;
+            this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
+            switchPlayer();
           }
         }
       }
     }
 
+    const jumpChecker = () => {
+      // if it's black's turn...
+      if (playerTurn == blackChecker) {
+        // if piece is trying to move up two rows (down two numerically)...
+        if ([whichPiece[0]] - 2 == [toWhere[0]]) {
+          // if piece is trying to move left two columns (down two numerically)... (else statement farther down)...
+          if ([whichPiece[1]] - 2 == [toWhere[1]]) {
+            // if space in between is NOT null or same player...
+            if ((([whichPiece[0]] - 1 == [toWhere[0]]) && ([(whichPiece[1] - 1 == toWhere[1])])) !== (null && blackChecker)) {
+              // ! need variable targeting piece in between... !
+              // this is trying to add starting and ending points and divide by two to get space in between
+              let jumpedPiece = ((whichPiece - (-toWhere))/2);
+              console.log(jumpedPiece)
+              // ! using variable for targeting space in between, set it to null !
+              // this one is trying to grab jumpedPiece and reassign value
+              this.board.grid[jumpedPiece] = null;
+              this.board.grid[whichPiece[0]][whichPiece[1]] = null;
+              this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
+              switchPlayer();
+            }
+          // TODO: do same thing but for jumping to the right
+          // if piece is trying to move right two columns (up two numerically)...
+          } else if ([toWhere[1]] - 2 == [whichPiece[1]]) {
+            // if space in between is NOT null or same player...
+            if ((([toWhere[0]] - 1 == [whichPiece[0]]) && ([(toWhere[1] - 1 == whichPiece[1])])) !== (null && blackChecker)) {
+              this.board.grid[whichPiece[0]][whichPiece[1]] = null;
+              this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
+              switchPlayer();
+            }
+          }
+        }
+      } else if (playerTurn == whiteChecker) {
+        // TODO: do same thing but for white checkers...
+      }
+    }
+
+    singleMove();
     jumpChecker();
-    switchPlayer();
+    // switchPlayer();
   }
 }
-// count pieces function
+
+// TODO: count pieces function
 
 function getPrompt() {
+  // creates blank line in between plays
+  console.log('')
+  // tells which player's turn it is
+  if (playerTurn == blackChecker) {
+    console.log("It's black's turn.")
+  } else if (playerTurn == whiteChecker) {
+    console.log("It's white's turn.")
+  }
   game.board.viewGrid();
   rl.question('which piece?: ', (whichPiece) => {
     rl.question('to where?: ', (toWhere) => {
@@ -286,207 +320,3 @@ if (typeof describe === 'function') {
 }
 
 
-
-
-// const jumpMove = (whichPiece, toWhere) => {
-//   // TODO: NEED TO FIGURE OUT HOW TO TARGET PLAYER IN NEXT LINE!!!
-//   if (playerTurn == blackChecker) {
-//     // if move is trying to go 18 or 22 spaces on the grid...
-//     if ((whichPiece - toWhere) === (18 || -18 || 22 || -22)) {
-//       // if space where checker is going is null...
-//       if (toWhere == null) {
-//         // ! need to figure out how to target other player in this line... because right now one player can skip their own piece !
-//         // ! does using this.player two lines down work if we're saying that piece is not null and not the same as one being played? !
-//         // if half of the space - aka the one being skipped over entered is NOT null... aka the space is filled...
-//         if (((whichPiece - toWhere)/2) !== null) {
-//           this.board.grid = null;
-//         }
-//       }
-//     } 
-//   } else {
-//     console.log('That is not a valid jump move.')
-//     return false;
-//   }
-// }
-// // return jumpMove();
-
-
-
-
-    // let whitePositions = [
-    //   [0, 1], [0, 3], [0, 5], [0, 7],
-    //   [1, 0], [1, 2], [1, 4], [1, 6],
-    //   [2, 1], [2, 3], [2, 5], [2, 7]
-    // ];
-    // for (let i = 0; i < 12; i++) {
-    //   let whiteRow = whitePositions[i][0]
-    //   let whiteColumn = whitePositions[i][1]
-
-    //   this.grid[whiteRow][whiteColumn] = whiteChecker;
-    //   this.checkers.push(whiteChecker);
-    // }
-
-    // let blackPositions = [
-    //   [5, 0], [5, 2], [5, 4], [5, 6],
-    //   [6, 1], [6, 3], [6, 5], [6, 7],
-    //   [7, 0], [7, 2], [7, 4], [7, 6]
-    // ];
-    // for (let i = 0; i < 12; i++) {
-    //   let blackRow = blackPositions[i][0]
-    //   let blackColumn = blackPositions[i][1]
-
-    //   this.grid[blackRow][blackColumn] = blackChecker;
-    //   this.checkers.push(blackChecker);
-    // }
-
-
-
-    // isValidInput(whichPiece, toWhere) {
-    //   // defines valid row and column values
-    //   const validRows = ['0', '1', '2', '3', '4', '5', '6', '7'];
-    //   const validEvenColumns = ['0', '2', '4', '6'];
-    //   const validOddColumns = ['1', '3', '5', '7'];
-  
-    //   // splits the checker positions into an array
-    //   const pieceArr = whichPiece.split('');
-    //   const endArr = toWhere.split('');
-  
-    //   // make sure both inputs are two characters long
-    //   if ()
-  
-  
-    // }
-  
-
-
-    // let start = whichPiece.split('');
-    // let end = toWhere.split('');
-    // let startX = start[0];
-    // let 
-
-
-
-
-
-
-    // isValidInput(whichPiece, toWhere) {
-//   let start = whichPiece.split('');
-//   let end = toWhere.split('');
-//   let startX = start[0];
-//   let startY = start[1];
-//   let endX = end[0];
-//   let endY = end[1];
-
-//   // integrate above into below
-
-//   const is0to7 = num => {
-//     if (num.x <= 7 && num.x >= 0) {
-//       return true;
-//     };
-//     if (num.y <= 7 && num.y >= 0) {
-//       return true;
-//     };
-//   }
-//   const isInputOdd = coords => {
-//     if ((coords.x + coords.y) %2 !== 0) {
-//       return true;
-//     };
-//   }
-//   const isEmpty = endCoords => {
-//     if (this.board.grid[endCoords.x][endCoords.y] === null) {
-//       return true;
-//     };
-//   }
-//   return is0to7 && isInputOdd(whichPiece) && isInputOdd(toWhere) && isEmpty(whichPiece) && !isEmpty(toWhere);
-// }
-
-// moveChecker() {
-//   singleMove(whichPiece, toWhere) {
-//     if (whichPiece > toWhere) {
-      
-//       return (end.x-start.x === -1) // or +1 depending on which color's turn it is
-//       && (end.y-start.y === 1 || -1) // move left and right
-
-//     }
-//   }
-//   jumpMove(whichPiece, toWhere) {
-
-//     // inside if statement?
-//     // change return from singleMove to 2 and -2
-//     // if statement inside of if statement to determine whether second jump can be made... OR!!! would for loop work better??
-
-
-
-//   }
-// }
-
-
-// // where do i put this...?????
-// isJumpValid(start, end) {
-//   if(validInput) {
-//     if(this.player === one of them) {
-//       if (end.x < start.x) {
-//         this.board.grid[start.x - 1][start.y - 1] && this.board.grid[end.x - 1][end.y - 1];
-//       }
-//     }
-//   }
-// }
-
-
-
-// }
-
-// isValidMove:
-// ending position needs to be empty
-// odd vs even changes -- also must move forward until kinged
-// column must go up/down by one depending on color and column has to go up or down one
-
-// jumpPiece:
-// for jumping, take number as a whole - magic number you're looking for is: one jump: 11, -11, 9, -9 // two jumps: -22, 22, -18, 18 after taking number as a whole
-
-// isAWin:
-// other player has no
-
-
-
-  // // where do i put this...?????
-  // isJumpValid(start, end) {
-  //   if(validInput) {
-  //     if(this.player === one of them) {
-  //       if (end.x < start.x) {
-  //         this.board.grid[start.x - 1][start.y - 1] && this.board.grid[end.x - 1][end.y - 1];
-  //       }
-  //     }
-  //   }
-  // }
-
-
-
-  // this.board.grid[from[0][from[1]] null]
-  // same with to but equal playerTUrn
-
-
-  // // ! ONLY ONE OF THE FOLLOWING TWO MAIN IF STATEMENTS ARE GOING TO WORK !
-    // // ! need to figure out how to target players !
-    // // targets black checkers which are at bottom of board to start
-    // if (playerTurn == blackChecker) {
-    //   if (whichPiece > toWhere) {
-    //     // if ending X-axis position is going to be greater & ending Y position moves it left or right one, return true
-    //     if (((endX - startX) === -1) && ((endY - startY) === (1 || -1))) {
-    //       if (playerTurn == 'black') {
-    //         return true;
-    //       }        
-          
-    //     }
-    //     // need else if to target kinged pieces
-    //   }
-    // }
-    // // targets white checkers which are at top of board to start
-    // if (playerTurn == whiteChecker) {
-    //   if (whichPiece < toWhere) {
-    //     // if ending X-axis position is going to be less than & ending Y position moves it left or right by one, return true
-    //     if (((endX - startX === 1) && (endY - startY) === (1 || -1))) {
-    //       return true;
-    //     }
-    //   }
-    // }
