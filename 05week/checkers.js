@@ -232,7 +232,6 @@ class Game {
               // ! need variable targeting piece in between... !
               // this is trying to add starting and ending points and divide by two to get space in between
               let jumpedPiece = ((whichPiece - (-toWhere))/2);
-              console.log(jumpedPiece)
               // ! using variable for targeting space in between, set it to null !
               // this one is trying to grab jumpedPiece and reassign value
               this.board.grid[jumpedPiece] = null;
