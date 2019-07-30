@@ -228,7 +228,8 @@ class Game {
           // if piece is trying to move left two columns (down two numerically)... (else statement farther down)...
           if ([whichPiece[1]] - 2 == [toWhere[1]]) {
             // if space in between is NOT null or same player...
-            if ((([whichPiece[0]] - 1 == [toWhere[0]]) && ([(whichPiece[1] - 1 == toWhere[1])])) !== (null && blackChecker)) {
+            if (([whichPiece[0]] - 1) && ([whichPiece[1]] - 1) === whiteChecker) {
+            // if ((([whichPiece[0]] - 1 !== [toWhere[0]]) && ([(whichPiece[1] - 1 !== toWhere[1])])) === whiteChecker) {
               // ! need variable targeting piece in between... !
               // this is trying to add starting and ending points and divide by two to get space in between
               let jumpedPiece = ((whichPiece - (-toWhere))/2);
@@ -243,7 +244,7 @@ class Game {
           // if piece is trying to move right two columns (up two numerically)...
           } else if ([toWhere[1]] - 2 == [whichPiece[1]]) {
             // if space in between is NOT null or same player...
-            if ((([toWhere[0]] - 1 == [whichPiece[0]]) && ([(toWhere[1] - 1 == whichPiece[1])])) !== (null && blackChecker)) {
+            if ((([toWhere[0]] - 1 == [whichPiece[0]]) && ([(toWhere[1] - 1 == whichPiece[1])])) === whiteChecker) {
               this.board.grid[whichPiece[0]][whichPiece[1]] = null;
               this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
               switchPlayer();
