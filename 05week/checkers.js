@@ -222,7 +222,7 @@ class Game {
 
     const jumpChecker = () => {
       // if it's black's turn...
-      if (playerTurn == blackChecker) {
+      if (playerTurn === blackChecker) {
         // if piece is trying to move up two rows (down two numerically)...
         if ([whichPiece[0]] - 2 == [toWhere[0]]) {
           // if piece is trying to move left two columns (down two numerically)... (else statement farther down)...
@@ -235,7 +235,8 @@ class Game {
               let jumpedPiece = (([whichPiece] - (-[toWhere]))/2);
               // ! using variable for targeting space in between, set it to null !
               // this one is trying to grab jumpedPiece and reassign value
-              this.board.grid[jumpedPiece] = null;
+              console.log(jumpedPiece);
+              
               this.board.grid[whichPiece[0]][whichPiece[1]] = null;
               this.board.grid[toWhere[0]][toWhere[1]] = playerTurn;
               switchPlayer();
@@ -252,7 +253,7 @@ class Game {
             }
           }
         }
-      } else if (playerTurn == whiteChecker) {
+      } else if (playerTurn === whiteChecker) {
         // TODO: do same thing but for white checkers...
       }
     }
