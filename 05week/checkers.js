@@ -183,7 +183,7 @@ class Game {
   //   && !isEmpty(toWhere) 
   //   && findRightPlayer(whichPiece)
   //   && findRightPlayer(toWhere);
-  // }
+  // } 
 
   moveChecker(whichPiece, toWhere) {
     // isValidInput();
