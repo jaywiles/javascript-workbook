@@ -20,7 +20,7 @@ function openBook() {
                 data.results.forEach(function(user) {
                     output +=
                         <ul>
-                            <li>Name: $(user.name}</li>
+                            <li>Name: $(user.name.first}</li>
                             
                         </ul>
                     ;
