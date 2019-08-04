@@ -133,21 +133,32 @@ const makePlayer = (id) => {
     const blueButton = document.createElement('button');
     
     redButton.innerHTML = "Choose Red Team";
-    redButton.addEventListener('click', function () {makePlayer(player.id)})
+    redButton.addEventListener('click', function () {makeRed(player.id)})
     playerList.appendChild(redButton)
     // playerList.appendChild(document.createTextNode(player.name + " - " + player.skillSet))
     playerElement.append(playerList)
     
     blueButton.innerHTML = "Choose Blue Team";
-    blueButton.addEventListener('click', function () {makePlayer(player.id)})
+    blueButton.addEventListener('click', function () {makeBlue(player.id)})
     playerList.appendChild(blueButton)
     playerList.appendChild(document.createTextNode("   " + player.name + " - " + player.skillSet))
     playerElement.append(playerList)
   })
 
-  listOfPlayers = null;
-  
-  deletePerson();
+// need to call deletePerson function somewhere??  
+}
 
-  
+const makeRed = () => {
+  const redPlayer = listOfPlayers.filter (person => {
+    return player.id === id;
+  })
+
+  redTeam.push(redPlayer);
+
+  console.log(redTeam);
+
+  const redElement = document.getElementById('blue');
+  listOfPlayers.map(player => {
+    const 
+  })
 }
