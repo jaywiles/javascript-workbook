@@ -57,31 +57,6 @@ const blueTeam = []
 // list of players on red team
 const redTeam = []
 
-// class Teams {
-//   constructor(color) {
-//     if (color == 'red') {
-//       this.name = 'red'
-//     } else {
-//       this.name = 'blue'
-//     }
-//   }
-// }
-
-// const redTurn = new Teams('red');
-// const blueTurn = new Teams('blue');
-
-// let playerTurn = red;
-
-// const switchPlayer = () => {
-//   if (playerTurn == redTurn) {
-//     playerTurn = blueTurn;
-//   } else {
-//     playerTurn = redTurn;
-//   }
-// }
-
-// document.write(`It's ${playerTurn}'s turn to select a player.`)
-
 class Person {
   constructor(id, name, age, skillSet, placeBorn) {
     this.id = id;
@@ -131,6 +106,16 @@ const listPeopleChoices = () => {
   })
 }
 
+// this function goes through player and person arrays and takes out any duplicates from person array since that means they were chosen to play
+const deletePerson = (id) => {
+  // looping through -- 10 is arbitrary number and can be changed to match number of people + players + blueTeam + redTeam
+  for (i = 0; i <= 10; i++) {
+    if (arrOfPeople[i].id == listOfPlayers[i].id) {
+      arrOfPeople[i].id = null;
+    }
+  }
+}
+
 const makePlayer = (id) => {
   // console.log(`li ${id} was clicked!`);
   const player = arrOfPeople.filter (person => {
@@ -141,17 +126,28 @@ const makePlayer = (id) => {
 
   console.log(listOfPlayers);
 
+  const playerElement = document.getElementById('players');
   listOfPlayers.map(player => {
-    const playerElement = document.createElement('div');
+    const playerList = document.createElement("li")
     const redButton = document.createElement('button');
     const blueButton = document.createElement('button');
+    
     redButton.innerHTML = "Choose Red Team";
+    redButton.addEventListener('click', function () {makePlayer(player.id)})
+    playerList.appendChild(redButton)
+    // playerList.appendChild(document.createTextNode(player.name + " - " + player.skillSet))
+    playerElement.append(playerList)
+    
     blueButton.innerHTML = "Choose Blue Team";
+    blueButton.addEventListener('click', function () {makePlayer(player.id)})
+    playerList.appendChild(blueButton)
+    playerList.appendChild(document.createTextNode("   " + player.name + " - " + player.skillSet))
+    playerElement.append(playerList)
   })
+
+  listOfPlayers = null;
+  
+  deletePerson();
+
+  
 }
-
-makePlayer();
-
-// convert person to player
-// make player into object
-// 
