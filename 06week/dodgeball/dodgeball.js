@@ -123,6 +123,12 @@ const makePlayer = (id) => {
     return person.id === id;
   })[0];
 
+  const singlePlayer = new Player (arrOfPeople.filter(player => {
+    return player.id === id;
+  }))
+
+  console.log(`singlePlayer: ${singlePlayer}`);
+
   listOfPlayers.push(player);
 
   console.log(listOfPlayers);
@@ -133,6 +139,8 @@ const makePlayer = (id) => {
     const redButton = document.createElement('button');
     const blueButton = document.createElement('button');
     
+    playerList.id = `element${player.name}`;
+
     redButton.innerHTML = "Choose Red Team";
     redButton.addEventListener('click', function () {makeRed(player.id)})
     playerList.appendChild(redButton)
@@ -157,38 +165,38 @@ const resetMakePlayer = () => {
   }
 }
 
-// const makeRed = (id) => {
-//   const redPlayer = listOfPlayers.filter (person => {
-//     return player.id === id;
-//   })[0];
+const makeRed = (id) => {
+  const redPlayer = listOfPlayers.filter (person => {
+    return player.id === id;
+  })[0];
 
-//   redTeam.push(redPlayer);
+  redTeam.push(redPlayer);
 
-//   console.log(redTeam);
+  console.log(redTeam);
 
-//   const redElement = document.getElementById('red');
-//   listOfPlayers.map(player => {
-//     const redList = document.createElement("li");
+  const redElement = document.getElementById('red');
+  listOfPlayers.map(player => {
+    const redList = document.createElement("li");
     
-//     redElement.append(redList)
-//   })
-// }
+    redElement.append(redList)
+  })
+}
 
-// const makeBlue = (id) => {
-//   const bluePlayer = listOfPlayers.filter (person => {
-//     return player.id === id;
-//   })[0];
+const makeBlue = (id) => {
+  const bluePlayer = listOfPlayers.filter (person => {
+    return player.id === id;
+  })[0];
 
-//   blueTeam.push(bluePlayer);
+  blueTeam.push(bluePlayer);
 
-//   console.log(blueTeam);
+  console.log(blueTeam);
 
-//   const blueElement = document.getElementById('blue');
-//   listOfPlayers.map(player => {
-//     const blueList = document.createElement("li");
+  const blueElement = document.getElementById('blue');
+  listOfPlayers.map(player => {
+    const blueList = document.createElement("li");
     
-//     blueElement.append(blueList)
-//   })
-// }
+    blueElement.append(blueList)
+  })
+}
 
 // add tests
