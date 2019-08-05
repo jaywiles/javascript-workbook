@@ -106,8 +106,9 @@ const listPeopleChoices = () => {
   })
 }
 
+// ! THIS FUNCTION IS NOT WORKING !
 // this function goes through player and person arrays and takes out any duplicates from person array since that means they were chosen to play
-const deletePerson = (id) => {
+const deletePerson = (id, arrOfPeople, listOfPlayers) => {
   // looping through -- 10 is arbitrary number and can be changed to match number of people + players + blueTeam + redTeam
   for (i = 0; i <= 10; i++) {
     if (arrOfPeople[i].id == listOfPlayers[i].id) {
@@ -145,22 +146,49 @@ const makePlayer = (id) => {
     playerElement.append(playerList)
   })
 
-// need to call deletePerson function somewhere??  
+  deletePerson();
+  resetMakePlayer();
 }
 
-const makeRed = () => {
-  const redPlayer = listOfPlayers.filter (person => {
-    return player.id === id;
-  })
-
-  redTeam.push(redPlayer);
-
-  console.log(redTeam);
-
-  const redElement = document.getElementById('blue');
-  listOfPlayers.map(player => {
-    const 
-  })
+// ! THIS FUNCTION IS NOT WORKING !
+const resetMakePlayer = () => {
+  if (listOfPlayers !== []) {
+    listOfPlayers = [];
+  }
 }
 
-// need to makeBlue function?
+// const makeRed = (id) => {
+//   const redPlayer = listOfPlayers.filter (person => {
+//     return player.id === id;
+//   })[0];
+
+//   redTeam.push(redPlayer);
+
+//   console.log(redTeam);
+
+//   const redElement = document.getElementById('red');
+//   listOfPlayers.map(player => {
+//     const redList = document.createElement("li");
+    
+//     redElement.append(redList)
+//   })
+// }
+
+// const makeBlue = (id) => {
+//   const bluePlayer = listOfPlayers.filter (person => {
+//     return player.id === id;
+//   })[0];
+
+//   blueTeam.push(bluePlayer);
+
+//   console.log(blueTeam);
+
+//   const blueElement = document.getElementById('blue');
+//   listOfPlayers.map(player => {
+//     const blueList = document.createElement("li");
+    
+//     blueElement.append(blueList)
+//   })
+// }
+
+// add tests
