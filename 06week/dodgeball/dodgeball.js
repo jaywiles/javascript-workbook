@@ -67,7 +67,7 @@ class Person {
   }
 }
 
-class Player extends Person{
+class Player extends Person {
   constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience, id, name, age, skillSet, placeBorn) {
     super(id, name, age, skillSet, placeBorn)
     this.canThrowBall = canThrowBall;
@@ -199,6 +199,7 @@ const makeBlue = (id) => {
     blueList.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
     blueElement.append(blueList)
 
+    // ! IF I UNCOMMENT THIS FOR LOOP - IT WILL ONLY PUT ONE PERSON DOWN TO PLAYER LIST, BUT THEN RETURNS UNDEFINED WHEN TRYING TO ADD TO TEAM, SO NOTHING HAPPENS !
     // this for loop works to only put one person on each time... but it's always the first person who was picked to play...
     // for (i = 0; i <= listOfPlayers.length; i++) {
     //   if (blueList[i] == listOfPlayers[i]) {
