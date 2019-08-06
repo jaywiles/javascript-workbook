@@ -138,8 +138,6 @@ const makePlayer = (id) => {
     const playerList = document.createElement("li")
     const redButton = document.createElement('button');
     const blueButton = document.createElement('button');
-    
-    playerList.id = `element${player.name}`;
 
     redButton.innerHTML = "Choose Red Team";
     redButton.addEventListener('click', function () {makeRed(player.id)})
