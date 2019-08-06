@@ -151,7 +151,7 @@ const makePlayer = (id) => {
     //     listOfPlayers.splice(listOfPlayers.length - 1);
     //     }
     //   }
-    }
+    // }
     
   })
 }
