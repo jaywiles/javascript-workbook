@@ -210,3 +210,14 @@ const makeBlue = (id) => {
 }
 
 // add tests
+
+// Tests
+
+if (typeof describe === 'function') {
+  describe('makePlayer()'), () => {
+    it('should add a person to player roster'), () => {
+      assert.equal(makePlayer.length, 7);
+      movePlayer()
+    }
+  }
+}
