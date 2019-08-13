@@ -127,9 +127,10 @@ const makePlayer = (id) => {
 
   const playerElement = document.getElementById('players');
   listOfPlayers.map(player => {
-    const playerList = document.createElement("li")
+    const playerList = document.createElement("li");
     const redButton = document.createElement('button');
     const blueButton = document.createElement('button');
+    const xButton = document.createElement('button');
 
     redButton.innerHTML = "Choose Red Team";
     redButton.addEventListener('click', function () {makeRed(player.id)})
@@ -144,6 +145,12 @@ const makePlayer = (id) => {
     playerList.appendChild(document.createTextNode(player.name + " - " + player.skillSet))
     playerElement.append(playerList)
     // blueButton.removeEventListener('click', function () {makePlayer(playerList)})
+
+    xButton.innerHTML = "X";
+    xButton.addEventListener("click", function() {
+      xButton.remove();
+      li.remove();
+    });
 
     // ! IF I UNCOMMENT THIS FOR LOOP - IT WILL ONLY PUT ONE PERSON DOWN TO PLAYER LIST, BUT THEN RETURNS UNDEFINED WHEN TRYING TO ADD TO TEAM, SO NOTHING HAPPENS !
     // for (i = 0; i <= arrOfPeople.length; i++) {
